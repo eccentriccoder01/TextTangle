@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#word-container {
+    margin-bottom: 20px;
+}
+
+#word-container span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+form {
+    margin-bottom: 10px;
+}
+
+#guess-input {
+    padding: 8px;
+    width: 120px;
+    text-transform: uppercase;
+}
+
+button {
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#chances {
+    font-weight: bold;
+    color: #007bff;
+}
+
+#feedback {
+    margin-bottom: 20px;
+}
+
+.correct {
+    background-color: green;
+}
+
+.exists {
+    background-color: yellow;
+}
+
+.wrong {
+    background-color: red;
+}
+
+#history-container {
+    margin-top: 20px;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+}
+
+#history-list li {
+    margin-bottom: 5px;
+}
+
+/* Styling for the history section */
+#history-list li .letter {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #000;
+    margin-right: 5px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+}
+
+#history-list li .letter.correct {
+    background-color: green;
+}
+
+#history-list li .letter.exists {
+    background-color: yellow;
+}
+
+#history-list li .letter.wrong {
+    background-color: red;
+}
+
+#history-list li .letter {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #f0f0f0;
+    color: #000;
+    margin-right: 5px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+}
+
+.result-message {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#start-button {
+    margin-bottom: 5px;
+}

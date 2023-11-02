@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#00a300">
+<meta name="theme-color" content="#ffffff">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Word</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <audio 
+    id="startsound" 
+    src="https://cdn.codechef.com/Learning/startsound.mp3"
+    ></audio>
+    
+    <audio 
+    id="endsuccesssound" 
+    src="https://cdn.codechef.com/Learning/endsuccesssound.mp3"
+    ></audio>
+    
+    <audio 
+    id="endfailsound" 
+    src="https://cdn.codechef.com/Learning/endfailsound.mp3"
+    ></audio>
+
+    <div class="container">
+        <h1>Guess the Word</h1>
+        <button id="start-button">Start Game</button>
+        <div id="word-container"></div>
+        <p>Chances left: <span id="chances">Click On Start Game!</span></p>
+        <p>Word Length: <span id="length">Click On Start Game!</span></p>
+        <div id="feedback"></div>
+        <div id="history-container">
+            <!-- <h3>History:</h3> -->
+            <ul id="history-list"></ul>
+        </div>
+        <form id="guess-form">
+            <input type="text" id="guess-input" required>
+            <button id="submitButton" type="submit">Guess</button>
+        </form>
+        <!-- Reload Button -->
+        <button id="reload-button">Reload Game</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
