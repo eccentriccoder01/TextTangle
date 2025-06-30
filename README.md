@@ -1,4 +1,4 @@
-<div align="center"><img src="favicon/apple-touch-icon.png"/></div>
+<div align="center"><img src="TextTangleLogo.png"/></div>
 
 # <div align="center">TEXTTANGLE</div>
 
