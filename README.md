@@ -1,4 +1,4 @@
-<div align="center"><img src="TextTangleLogo.png"/></div>
+<div align="center"><img src="TextTangleLogo.png" style="width: 220px; height: 220px;"/></div>
 
 # <div align="center">TEXTTANGLE</div>
 
