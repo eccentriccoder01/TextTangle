@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextTangle - Word Guess</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+            <div class="shape shape-5"></div>
+        </div>
+    </div>
+
+    <!-- Custom Word Modal -->
+    <div id="custom-word-modal" class="modal" style="display: none;">
+        <div class="modal-content glass-effect">
+            <div class="modal-header">
+                <i class="fas fa-magic"></i>
+                <h3>Enter Custom Word</h3>
+            </div>
+            <div class="input-group">
+                <input type="text" id="custom-word-input" maxlength="7" placeholder="Type your word..." />
+                <div class="input-underline"></div>
+            </div>
+            <div class="modal-buttons">
+                <button id="custom-word-submit" class="btn-primary">
+                    <i class="fas fa-play"></i> Start
+                </button>
+                <button id="custom-word-cancel" class="btn-secondary">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav glass-effect">
+        <div class="nav-left">
+            <button id="custom-word-mode" class="nav-btn">
+                <i class="fas fa-gamepad"></i>
+                <span>Custom Mode</span>
+            </button>
+        </div>
+        
+        <div class="nav-center">
+            <div class="logo-container">
+                <h1 class="game-logo">
+                    <span class="logo-text">Text</span>
+                    <span class="logo-accent">Tangle</span>
+                </h1>
+            </div>
+        </div>
+        
+        <div class="nav-right">
+            <button id="toggle-dark" class="nav-btn">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="toggle-sound" class="nav-btn">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Control Panel -->
+    <div class="control-panel glass-effect">
+        <div class="control-group">
+            <label class="control-label">
+                <i class="fas fa-cog"></i> Word Length
+            </label>
+            <select id="word-length-selector" class="custom-select">
+                <option value="4">4 Letters</option>
+                <option value="5" selected>5 Letters</option>
+                <option value="6">6 Letters</option>
+                <option value="7">7 Letters</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                <i class="fas fa-palette"></i> Accessibility
+            </label>
+            <button id="toggle-colorblind" class="toggle-btn">
+                <span class="toggle-text">Colorblind Mode</span>
+                <span class="toggle-status">OFF</span>
+            </button>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                <i class="fas fa-calendar"></i> Game Mode
+            </label>
+            <button id="toggle-daily" class="toggle-btn active">
+                <span class="toggle-text">Daily Challenge</span>
+                <span class="toggle-status">ON</span>
+            </button>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">
+                <i class="fas fa-keyboard"></i> Input Mode
+            </label>
+            <button id="toggle-typefree" class="toggle-btn">
+                <span class="toggle-text">Type-Free</span>
+                <span class="toggle-status">OFF</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Difficulty Selection -->
+    <div id="difficulty-modes" class="difficulty-container">
+        <h3 class="section-title">
+            <i class="fas fa-trophy"></i> Choose Difficulty
+        </h3>
+        <div class="difficulty-buttons">
+            <button class="difficulty-btn easy-btn" data-level="easy">
+                <i class="fas fa-leaf"></i>
+                <span>Easy</span>
+                <small>4 Letters</small>
+            </button>
+            <button class="difficulty-btn medium-btn" data-level="medium">
+                <i class="fas fa-fire"></i>
+                <span>Medium</span>
+                <small>5 Letters</small>
+            </button>
+            <button class="difficulty-btn hard-btn" data-level="hard">
+                <i class="fas fa-skull"></i>
+                <span>Hard</span>
+                <small>6 Letters</small>
+            </button>
+        </div>
+    </div>
+
+<!-- Main Game Container -->
+<div class="container glass-effect">
+    <div class="column">
+        <div class="game-header">
+            <button id="start-button" class="start-btn">
+                <i class="fas fa-rocket"></i>
+                <span>Launch Game</span>
+                <div class="btn-glow"></div>
+            </button>
+            <div class="button-row">
+            <div class="action-buttons">
+                <button id="reload-button" class="action-btn reload-btn">
+                    <i class="fas fa-redo"></i>
+                    <span>New Game</span>
+                </button>
+            </div>
+
+            <button id="hint-button" class="hint-btn" disabled>
+                <i class="fas fa-lightbulb"></i>
+                <span>Hint Available</span>
+            </button>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Time: <span id="timer" class="timer-value">--</span></span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Lives: <span id="chances" class="chances-value">--</span></span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-ruler"></i>
+                    <span>Length: <span id="length" class="length-value">--</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Word Display -->
+        <div class="word-display-container">
+            <div id="word-container" class="word-container"></div>
+        </div>
+
+        <!-- Statistics Panel -->
+        <div class="stats-panel">
+            <h3 class="panel-title">
+                <i class="fas fa-chart-line"></i> Your Statistics
+            </h3>
+            <div id="stats" class="stats-content"></div>
+        </div>
+
+        <!-- Quote Section -->
+        <div class="quote-section">
+            <div id="quote" class="daily-quote"></div>
+        </div>
+
+    </div>
+
+    <div class="column">
+        <!-- Game Controls -->
+        <div class="game-controls">
+
+            <!-- Input Form -->
+            <form id="guess-form" class="guess-form">
+                <div class="input-container">
+                    <input type="text" id="guess-input" class="guess-input" required autocomplete="off" placeholder="Enter your guess...">
+                    <button id="submitButton" type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Virtual Keyboard -->
+            <div id="keyboard" class="keyboard-container">
+                <div class="keyboard-row">
+                    <div class="key" id="key-Q">Q</div>
+                    <div class="key" id="key-W">W</div>
+                    <div class="key" id="key-E">E</div>
+                    <div class="key" id="key-R">R</div>
+                    <div class="key" id="key-T">T</div>
+                    <div class="key" id="key-Y">Y</div>
+                    <div class="key" id="key-U">U</div>
+                    <div class="key" id="key-I">I</div>
+                    <div class="key" id="key-O">O</div>
+                    <div class="key" id="key-P">P</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="key" id="key-A">A</div>
+                    <div class="key" id="key-S">S</div>
+                    <div class="key" id="key-D">D</div>
+                    <div class="key" id="key-F">F</div>
+                    <div class="key" id="key-G">G</div>
+                    <div class="key" id="key-H">H</div>
+                    <div class="key" id="key-J">J</div>
+                    <div class="key" id="key-K">K</div>
+                    <div class="key" id="key-L">L</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="key" id="key-Z">Z</div>
+                    <div class="key" id="key-X">X</div>
+                    <div class="key" id="key-C">C</div>
+                    <div class="key" id="key-V">V</div>
+                    <div class="key" id="key-B">B</div>
+                    <div class="key" id="key-N">N</div>
+                    <div class="key" id="key-M">M</div>
+                </div>
+                <div class="keyboard-row">
+                    <div class="key" id="key-ENTER">↩️</div>
+                    <div class="key" id="key-BACK">←</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Letter Frequency Heatmap -->
+        <div id="heatmap" class="heatmap-section">
+            <h3 class="section-title">
+                <i class="fas fa-fire"></i> Letter Frequency
+            </h3>
+            <div id="heatmap-bars" class="heatmap-container"></div>
+        </div>
+    </div>
+
+    <div class="column">
+        <!-- Guess History -->
+        <div id="history-container" class="history-section">
+            <h3 class="section-title">
+                <i class="fas fa-history"></i> Your Guesses
+            </h3>
+            <ul id="history-list" class="history-list"></ul>
+        </div>
+        
+        <!-- Feedback Section -->
+        <div id="feedback" class="feedback-section"></div>
+
+        <!-- Definition Panel -->
+        <div id="definition" class="definition-panel"></div>
+    </div>
+
+</div>
+
+    <!-- Audio Elements -->
+    <audio id="startsound" src="https://cdn.codechef.com/Learning/startsound.mp3"></audio>
+    <audio id="endsuccesssound" src="https://cdn.codechef.com/Learning/endsuccesssound.mp3"></audio>
+    <audio id="endfailsound" src="https://cdn.codechef.com/Learning/endfailsound.mp3"></audio>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <div class="developer-credit">
+        <a href="https://eccentriccoder01.github.io/Me" target="_blank" class="explorer-signature" title="Visit My World">
+            Developed by <span class="eccentric">Eccentric Explorer</span>
+        </a>
+    </div>
+</body>
+</html>
