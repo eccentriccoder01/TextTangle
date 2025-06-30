@@ -4,7 +4,7 @@
 
 ## A JavaScript-based advanced feature-rich wordle
 
-TextTangle is an engaging web-based word guessing game inspired by popular daily word challenges like Wordle. It provides a seamless and interactive experience for guessing a secret word, complete with a sleek, animated interface and robust features. Test your vocabulary and deduction skills as you try to unravel the hidden word within a set number of chances\!
+TextTangle is an advanced Wordle which provides a seamless and interactive experience for guessing a secret word, complete with a sleek, animated interface and robust features. Test your vocabulary and deduction skills as you try to unravel the hidden word within a set number of chances\!
 
 ## ✨ Features
 
