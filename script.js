@@ -234,13 +234,14 @@ $(document).ready(function () {
         typedGuess = "";
     });
     $(document).on("click", ".key", function () {
-        const key = $(this).text();
+        const keyId = $(this).attr("id");
+        const keyText = $(this).text(); 
 
         if (typeFreeMode) {
-            if (key === "↩️") {
+            if (keyId === "key-ENTER") {
                 $guessInput.val(typedGuess);
                 $guessForm.submit();
-            } else if (key === "←") {
+            } else if (keyId === "key-BACK") {
                 typedGuess = typedGuess.slice(0, -1);
             } else if (typedGuess.length < secretWord.length) {
                 typedGuess += key.toUpperCase();
@@ -248,12 +249,12 @@ $(document).ready(function () {
             $guessInput.val(typedGuess);
         } else {
             let currentVal = $guessInput.val();
-            if (key === "↩️") {
+            if (keyId === "key-ENTER") {
                 $guessForm.submit();
-            } else if (key === "←") {
+            } else if (keyId === "key-BACK") {
                 $guessInput.val(currentVal.slice(0, -1));
             } else if (currentVal.length < secretWord.length) {
-                $guessInput.val(currentVal + key.toUpperCase());
+                $guessInput.val(currentVal + keyText.toUpperCase());
             }
         }
     });
