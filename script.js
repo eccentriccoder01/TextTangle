@@ -140,9 +140,7 @@ $(document).ready(function () {
     function fetchWord(length, daily = false) {
     const wordList = ["apple", "brave", "crazy", "drink", "eagle", "flame", "glide", "hound", "ivory", "joker"];
     if (daily) {
-        const date = new Date().toDateString();
-        const seed = date.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
-        secretWord = wordList[seed % wordList.length].toUpperCase();
+        secretWord = getDailyWord(length);
         startGame(); // directly start game
     } else {
         fetch(`https://random-word-api.vercel.app/api?words=1&length=${length}`)
@@ -360,7 +358,6 @@ $(document).ready(function () {
             $("#definition").html(`<strong>📖 ${secretWord}:</strong> Definition not found.`);
         });
         showHeatmap();
-        if (timer) clearInterval(timer);
         $("#keyboard").addClass("disabled");
     }
 
