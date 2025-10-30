@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🎮 Live Demo
+    url: https://eccentriccoder01.github.io/TextTangle
+    about: Try TextTangle live to see if you can reproduce the issue
+  - name: 📚 Documentation
+    url: https://github.com/eccentriccoder01/TextTangle/blob/main/README.md
+    about: Check the README for game features and instructions
